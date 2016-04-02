@@ -9,6 +9,73 @@ set nocompatible
 
 " enable syntax highlighting
 syntax enable
+set background=dark
+colorscheme  solarized
+" colorscheme desert
+nnoremap <silent> <F8> :TlistToggle<CR>
+let NERDTreeWinPos=1
+set cursorline
+hi CursorLine  cterm=NONE   ctermbg=darkred ctermfg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
+
+set laststatus=2
+set ttimeoutlen=50
+
+let g:airline_symbols = {}
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = ''
+" let g:airline#extensions#whitespace#enabled = 0
+" let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'solarized'
+"let g:airline_theme = 'powerlineish'
+let g:tmuxline_powerline_separators = 0
+"let g:airline#extensions#tmuxline#enabled = 1
+" let g:tmuxline_powerline_separators = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
+"let g:miniBufExplMoreThanOne=0
+"let g:miniBufExplorerMoreThanOne=0
+"map <F1> :MBEbp<CR>
+"map <F2> :MBEbn<CR>
+" MiniBufExpl Colors
+"hi MBENormal               guifg=#808080 guibg=fg
+"hi MBEChanged              guifg=#CD5907 guibg=fg
+"hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+"hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+"hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+"hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+
+" GitGutter           Git辅助插件
+"let g:gitgutter_enabled               = 0      " 默认不开启
+"let g:gitgutter_signs                 = 0      " 默认不开启提示
+"let g:gitgutter_highlight_lines       = 0      " 默认不高亮行
+"let g:gitgutter_sign_added            = '+'    " 自定义新增指示符
+"let g:gitgutter_sign_modified         = '>'    " 自定义修改指示符
+"let g:gitgutter_sign_removed          = '-'    " 自定义删除指示符
+"let g:gitgutter_sign_modified_removed = '->'   " 自定义既修改又删除指示符
 
 set autoindent
 set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
@@ -21,8 +88,8 @@ set expandtab                                                " expand tabs to sp
 set ignorecase                                               " case-insensitive search
 set incsearch                                                " search as you type
 set laststatus=2                                             " always show statusline
-set list                                                     " show trailing whitespace
-set listchars=tab:▸\ ,trail:▫
+"set list                                                     " show trailing whitespace
+"set listchars=tab:▸\ ,trail:▫
 set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
@@ -36,7 +103,8 @@ set wildmenu                                                 " show a navigable 
 set wildmode=longest,list,full
 
 " Enable basic mouse behavior such as resizing buffers.
-set mouse=a
+" set mouse=a
+set mouse=
 if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
 endif
@@ -63,7 +131,7 @@ map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimr
 " plugin settings
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 
 " powerline
 set t_Co=16
@@ -122,3 +190,44 @@ if filereadable(expand("~/.vimrc.local"))
   " noremap! jj <ESC>
   source ~/.vimrc.local
 endif
+" set term=screen
+set cursorline
+set hls
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_collect_identifiers_from_tag_files = 1
+"nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" YCM 补全菜单配色
+" " 菜单
+" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+" " 选中项
+" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+" " 补全功能在注释中同样有效
+" let g:ycm_complete_in_comments=1
+" " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
+" let g:ycm_confirm_extra_conf=0
+" " 开启 YCM 标签补全引擎
+" let g:ycm_collect_identifiers_from_tags_files=1
+" " 引入 C++ 标准库tags
+" set tags+=/data/misc/software/misc./vim/stdcpp.tags
+" set tags+=/home/wansb/work/x4412/kernel3.0.15/tags
+" " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
+" inoremap <leader>; <C-x><C-o>
+" " 补全内容不以分割子窗口形式出现，只显示补全列表
+" set completeopt-=preview
+" " 从第一个键入字符就开始罗列匹配项
+" let g:ycm_min_num_of_chars_for_completion=1
+" " 禁止缓存匹配项，每次都重新生成匹配项
+" let g:ycm_cache_omnifunc=0
+" " 语法关键字补全         
+" let g:ycm_seed_identifiers_with_syntax=1
+
+"" 这个leader就映射为逗号“，”
+let mapleader = ","
+
+"配置默认的ycm_extra_conf.py
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>   "按,jd 会跳转到定义
+let g:ycm_confirm_extra_conf=0    "打开vim时不再询问是否加载ycm_extra_conf.py配置
+let g:ycm_collect_identifiers_from_tag_files = 1 "使用ctags生成的tags文件
